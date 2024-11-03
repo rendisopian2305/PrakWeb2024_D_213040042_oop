@@ -157,3 +157,4 @@ echo "<hr>";
 
 $produk1->setPenerbit("Theralll");
 echo $produk1->getPenerbit();
+

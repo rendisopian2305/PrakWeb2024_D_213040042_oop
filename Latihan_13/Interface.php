@@ -1,24 +1,20 @@
 <?php  
 
-// Sebuah kelas yang tidak dapat di inisiasi
-// kelas 'abstrak'
-// Mendefinisikan interface untuk kelas lain yang menjadi turunannya
-// berperan sebagai 'kerangka dasar' untuk kelas turunannya
-// Memiliki minimal 1 method abstrak
-// Digunakan dalam pewarisan / inheritance untuk memaksakan implementasi method abstrak yang sama untuk semua kelas turunannya
- 
-/*  
-Semua kelas turunan, harus mengimplementasikan method abstrak yang ada di kelas abstraknya
-kelas asbtrak boleh memiliki property / method reguler
-kelas abstrak boleh memiliki propert / static method
-*/
+// Kelas Abstrak yang sama sekali tidak memiliki implementasi 
+// Murni merupakan template untuk kelas turunannya 
+// Tidak boleh memiliki property, hanya deklarasi method saja
+// Semua method harus dideklarasikan dengan visibility public
+// Boleh mendeklarasikan __construct()
+// Satu kelas boleh mengimplementasikan banyak interface 
+// Dengan menggunakan type-hinting dapat melakukan 'Dependency Injection'
+// Pada akhirnya akan mencapai Polymorphism
 
-// Jualan Produk
-// Komik
-// Game
+interface InfoProduk {
+    public function getInfoProduk(); 
+}
 
 abstract class Produk {
-    private $judul, 
+    protected $judul, 
             $penulis,
             $penerbit,
             $harga,
@@ -82,23 +78,24 @@ abstract class Produk {
              return "$this->penulis, $this->penerbit";
          }
 
-    abstract public function getInfoProduk(); 
+        abstract public function getInfo();
     
-    public function getInfo() {
-        $str = "{$this->judul} | {$this->getLabel()} (RP. {$this->harga})";
-
-        return $str;
-    }
 }
 
 
-class komik extends Produk {
+class komik extends Produk implements InfoProduk {
     public $jumlahHalaman;
 
     public function __construct( $judul = "judul", $penulis = "penulis", $penerbit = "penerbit", $harga = 0, $jumlahHalaman = 0) {
         parent::__construct( $judul, $penulis, $penerbit, $harga );
 
         $this->jumlahHalaman = $jumlahHalaman;
+    }
+
+    public function getInfo() {
+        $str = "{$this->judul} | {$this->getLabel()} (RP. {$this->harga})";
+
+        return $str;
     }
     public function getInfoProduk() {
         $str = "Komik : " . $this->getInfo() . " - {$this->jumlahHalaman} Halaman.";
@@ -108,13 +105,19 @@ class komik extends Produk {
 }
 
 
-class Game extends Produk {
+class Game extends Produk implements InfoProduk {
     public $waktuMain;
 
     public function __construct($judul = "judul", $penulis = "penulis", $penerbit = "penerbit", $harga = 0, $waktuMain = 0) {
         parent::__construct($judul, $penulis, $penerbit, $harga );
 
         $this->waktuMain = $waktuMain;
+    }
+
+    public function getInfo() {
+        $str = "{$this->judul} | {$this->getLabel()} (RP. {$this->harga})";
+
+        return $str;
     }
 
 
@@ -151,6 +154,11 @@ $cetakProduk = new CetakInfoProduk();
 $cetakProduk->tambahProduk( $produk1 );
 $cetakProduk->tambahProduk( $produk2 );
 echo $cetakProduk->cetak();
+
+// $tes = new Produk();
+
+
+
 
 
 

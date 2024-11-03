@@ -7,14 +7,18 @@ class Produk {
     public $judul, 
            $penulis,
            $penerbit,
-           $harga;
+           $harga,
+           $jumlahHalaman,
+           $waktuMain;
           
 
-        public function __construct(  $judul = "judul", $penulis = "penulis", $penerbit = "penerbit", $harga = 0) {
+        public function __construct(  $judul = "judul", $penulis = "penulis", $penerbit = "penerbit", $harga = 0, $jumlahHalaman = 0, $waktuMain = 0) {
             $this->judul = $judul;
             $this->penulis = $penulis;
             $this->penerbit = $penerbit;
             $this->harga = $harga;
+            $this->jumlahHalaman = $jumlahHalaman;
+            $this->waktuMain = $waktuMain;
            
      
         }
@@ -36,15 +40,8 @@ class Produk {
 
 
 class komik extends Produk {
-    public $jumlahHalaman;
-
-    public function __construct( $judul = "judul", $penulis = "penulis", $penerbit = "penerbit", $harga = 0, $jumlahHalaman = 0) {
-        parent::__construct( $judul, $penulis, $penerbit, $harga );
-
-        $this->jumlahHalaman = $jumlahHalaman;
-    }
     public function getInfoProduk() {
-        $str = "Komik : " . parent::getInfoProduk() . " - {$this->jumlahHalaman} Halaman.";
+        $str = "Komik : {$this->judul} | {$this->getLabel()} (RP. {$this->harga}) - {$this->jumlahHalaman} Halaman.";
         return $str;
     }
     
@@ -52,14 +49,8 @@ class komik extends Produk {
 
 
 class Game extends Produk {
-    public $waktuMain;
-    public function __construct($judul = "judul", $penulis = "penulis", $penerbit = "penerbit", $harga = 0, $waktuMain = 0) {
-        parent::__construct($judul, $penulis, $penerbit, $harga );
-
-        $this->waktuMain = $waktuMain;
-    }
     public function getInfoProduk() {
-        $str = "Game : " . parent::getInfoProduk() . " - {$this->waktuMain} Jam.";
+        $str = "Game : {$this->judul} | {$this->getLabel()} (RP. {$this->harga}) - {$this->waktuMain} Jam.";
         return $str;
     }
     
@@ -78,11 +69,11 @@ class CetakInfoProduk {
 
 // $Produk2 = new Produk();
 // $Produk2->judul = "Only up";
-// $Produk2->tambahProperty = "hahaha";
+// $Produk2->tambahProperty = "hehehe";
 // var_dump($Produk2);
 
-$produk1 = new komik("Naruto", "Masashi Kishimoto", "Shonen Jump", 35000, 125);
-$produk2 = new Game("Only up", "Neil Amstrong", "SCKR Games", 30000, 45);
+$produk1 = new komik("Naruto", "Masashi Kishimoto", "Shonen Jump", 35000, 125, 0);
+$produk2 = new Game("Only up", "Neil Amstrong", "SCKR Games", 30000, 0, 45);
 
 // var_dump($produk3);
 // echo "Komik : $produk3->penulis, $produk3->penerbit";

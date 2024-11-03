@@ -124,3 +124,4 @@ echo "<hr>";
 
 $produk2->setDiskon(50);
 echo $produk2->getHarga();
+

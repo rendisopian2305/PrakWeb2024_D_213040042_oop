@@ -5,7 +5,7 @@
 // yang pertama bisa memakai define tetapi tidak bisa digunakan didalam kelas 
 // yang kedua bisa memakai const bisa digunakan di dalam kelas  
 
-// define('NAMA', 'Theralll');
+// define('NAMA', 'Rendi');
 // echo NAMA;
 
 // echo "<br>";
@@ -14,7 +14,7 @@
 // echo UMUR;
 
 // class Coba {
-//     const NAMA = 'Theralll';
+//     const NAMA = 'Rendi';
 
 // }
 

@@ -34,3 +34,5 @@ echo $obj2->hallo();
 echo $obj2->hallo();
 echo $obj2->hallo();
 
+
+
